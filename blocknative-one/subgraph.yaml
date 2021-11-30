@@ -1,0 +1,24 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Counter
+    network: testnet
+    source:
+      address: "0x9014d1AD478C7c04BeD711Efe18a452ae9c9CBc2"
+      abi: Counter
+      startBlock: 9727354
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Called
+      abis:
+        - name: Counter
+          file: ./abis/Counter.json
+      eventHandlers:
+        - event: Called(address,uint256)
+          handler: handleCalled
+      file: ./src/mapping.ts
